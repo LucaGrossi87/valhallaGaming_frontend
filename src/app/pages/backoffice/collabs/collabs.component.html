@@ -84,7 +84,7 @@
       <h5>Lista Collaboratori</h5>
       <div class="list-group">
         <div *ngFor="let collaborator of collaborators" class="mb-3">
-          {{ collaborator.firstName }} {{ collaborator.lastName }}
+          {{ collaborator.firstName }} {{ collaborator.lastName }} - <a href="mailto:'{{collaborator.email}}'">{{collaborator.email}}</a>
           <div
             class="btn-group ms-3"
             role="group"

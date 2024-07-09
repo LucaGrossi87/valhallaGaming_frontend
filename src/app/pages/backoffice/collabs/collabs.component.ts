@@ -25,7 +25,6 @@ export class CollabsComponent implements OnInit {
     this.loadCollaborators();
     this.authSvc.user$.subscribe((user) => {
       this.isCollaborator = (user as Admin)?.role === 'COLLABORATOR';
-      console.log(user);
     });
 
   }
@@ -44,9 +43,6 @@ export class CollabsComponent implements OnInit {
 
   submitCollaborator(): void {
     if (!this.isCollaborator) {
-      console.log("check");
-      console.log(this.collaborator);
-
       this.collabSvc.createCollaborator(this.collaborator).subscribe(
         (data) => {
           console.log('Collaboratore creato con successo:', data);

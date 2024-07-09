@@ -6,7 +6,7 @@
         <div *ngFor="let b of bookings">
           <div *ngIf="b.date == d" class="rounded align-items-center">
             <div class="mb-0 mx-2 d-flex flex-column p-3">
-              <span class="mb-3 text-center">{{ b.user.firstName }} - Ospiti:{{b.guests}} - {{ b.station.stationType }} {{ b.station.id }} - {{b.game}} - <span *ngIf="b.open">Aperta</span><span *ngIf="!b.open">Chiusa</span></span>
+              <span class="mb-3 text-center">{{ b.user.firstName }} {{b.user.lastName}} - <a href="mailto:'{{b.user.email}}'">{{b.user.email}}</a> - Ospiti:{{b.guests}} - {{ b.station.stationType }} {{ b.station.id }} - {{b.game}} - <span *ngIf="b.open">Aperta</span><span *ngIf="!b.open">Chiusa</span></span>
               <span class="text-center">
                 <button class="btn btn-outline-dark mx-3" *ngIf="!b.confirmed" (click)="confirm(b.id!)">
                   Conferma
