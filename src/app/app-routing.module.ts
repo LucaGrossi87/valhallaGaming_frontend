@@ -6,7 +6,6 @@ import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 import { WaitConfirmationComponent } from './pages/wait-confirmation/wait-confirmation/wait-confirmation.component';
 import { BookOpenBoardComponent } from './pages/book-open-board/book-open-board.component';
 import { BookNewBoardComponent } from './pages/book-new-board/book-new-board.component';
-import { BackofficeComponent } from './pages/backoffice/backoffice.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 

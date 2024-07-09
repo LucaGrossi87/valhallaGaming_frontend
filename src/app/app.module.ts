@@ -1,4 +1,3 @@
-import { NavbarComponent } from './../../../../../m3/s2/g1/esercizio/src/app/components/navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -22,7 +21,6 @@ import { ContactsComponent } from './pages/contacts/contacts.component';
   declarations: [
     AppComponent,
     HomeComponent,
-
     BookLanComponent,
     AdminLoginComponent,
     HeaderComponent,
@@ -30,7 +28,6 @@ import { ContactsComponent } from './pages/contacts/contacts.component';
     BookOpenBoardComponent,
     WaitConfirmationComponent,
     FooterComponent,
-    NavbarComponent,
     ContactsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
