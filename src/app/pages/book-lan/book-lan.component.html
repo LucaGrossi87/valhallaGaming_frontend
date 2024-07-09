@@ -1,6 +1,8 @@
 <div
   class="container bg-filter fw-semibold text-center my-5 rounded p-5 border border-warning"
 >
+<div *ngIf="lans.length==0"><p class="fs-4">Purtroppo non ci sono tavoli disponibili per il {{date}}</p></div>
+<div *ngIf="lans.length>0">
   <p class="fs-4">Ci sono ancora {{ lans.length }} LAN libere</p>
   <p>Inserisci i tuoi dati per prenotare</p>
 
@@ -45,4 +47,5 @@
     ></button>
   </div>
   <button (click)="prenota()" class="btn btn-outline-dark mt-3">Prenota</button>
+</div>
 </div>
