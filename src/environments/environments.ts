@@ -20,5 +20,6 @@ export const environment = {
   bookingsByStationUrl:'https://tasty-lavinie-lucagrossi87-8ac74254.koyeb.app/api/bookings/station',
   createCollabUrl:'https://tasty-lavinie-lucagrossi87-8ac74254.koyeb.app/api/admins/collab',
   getCollabsUrl:'https://tasty-lavinie-lucagrossi87-8ac74254.koyeb.app/api/admins/collabs',
-  getCollabByIdUrl:'https://tasty-lavinie-lucagrossi87-8ac74254.koyeb.app/api/admins'
+  getCollabByIdUrl:'https://tasty-lavinie-lucagrossi87-8ac74254.koyeb.app/api/admins',
+  createUsrUrl:'https://tasty-lavinie-lucagrossi87-8ac74254.koyeb.app/api/users'
 };
