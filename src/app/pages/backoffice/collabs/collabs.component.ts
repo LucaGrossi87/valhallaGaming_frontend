@@ -23,7 +23,6 @@ export class CollabsComponent implements OnInit {
   ngOnInit(): void {
     this.loadCollaborators();
     this.authSvc.user$.subscribe((user) => {
-      // Verifica se user è un oggetto Admin e se ha il ruolo 'COLLABORATOR'
       this.isCollaborator = (user as Admin)?.role === 'COLLABORATOR';
     });
   }
