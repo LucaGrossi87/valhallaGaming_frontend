@@ -8,7 +8,7 @@ import { User } from '../models/i-users';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/api/users';
+  private apiUrl = 'http://tasty-lavinie-lucagrossi87-8ac74254.koyeb.app/api/users';
 
   constructor(private http: HttpClient) {}
 
