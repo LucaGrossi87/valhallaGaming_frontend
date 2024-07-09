@@ -17,16 +17,16 @@ export class BookNewBoardComponent implements OnInit {
   boards: Station[] = [];
   settedBoards: Station[] = [];
   date: string = '';
-  firstName: string = 'nome';
-  lastName: string = 'cognome';
-  email: string = 'email@email.email';
+  firstName: string = '';
+  lastName: string = '';
+  email: string = '';
   guests: number = 0;
   open: boolean = false;
   guestNumbers: number[] = [];
   seats: number = 0;
   boardId: number | undefined;
   chosenBoard: Station | undefined;
-  game: string = 'gioco';
+  game: string = '';
   maxSeats: number = 0;
   showAlert: boolean = false;
 
