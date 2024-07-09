@@ -1,0 +1,87 @@
+<div
+  class="container bg-filter fw-semibold text-center my-5 rounded p-3 border border-warning"
+>
+  <p class="fs-4">Ci sono ancora {{ boards.length }} tavoli disponibili</p>
+
+  <div>
+    <label for="firstName" class="mx-3">Nome:</label>
+    <input
+      id="firstName"
+      [(ngModel)]="firstName"
+      placeholder="Inserisci il tuo nome"
+      required
+    />
+  </div>
+  <div>
+    <label for="lastName" class="mx-3 my-3">Cognome:</label>
+    <input
+      id="lastName"
+      [(ngModel)]="lastName"
+      placeholder="Inserisci il tuo cognome"
+      required
+    />
+  </div>
+  <div>
+    <label for="email" class="mx-3">Email:</label>
+    <input
+      id="email"
+      [(ngModel)]="email"
+      placeholder="Inserisci email"
+      required
+    />
+  </div>
+  <div>
+    <label for="game" class="me-3 mt-3">Gioco:</label>
+    <input id="game" [(ngModel)]="game" name="game" required class="rounded" />
+  </div>
+  <div class="border-top border-bottom border-black my-3 pt-1 pb-3">
+    <p class="">Quanti siete?</p>
+    <select id="guests" [(ngModel)]="guests">
+      <option
+        *ngFor="let number of guestNumbers"
+        [value]="number"
+        class="rounded"
+        required
+      >
+        {{ number }}
+      </option>
+    </select>
+  </div>
+  <div class="border-bottom border-black my-3 pb-3">
+    <label for="open" class="mx-1">Vuoi lasciare la prenotazione aperta?</label>
+    <input type="checkbox" id="open" [(ngModel)]="open" />
+  </div>
+  <div *ngIf="open">
+    <p>Scegli quanti posti servono al tuo tavolo</p>
+    <div *ngFor="let b of settedBoards">
+      <input
+        type="radio"
+        id="seat{{ b.id }}"
+        name="seats"
+        [value]="b.seatsTotal"
+        (change)="onSeatSelected(b)"
+        [disabled]="b.seatsTotal - guests < 0"
+        required
+      />
+      <label for="seat{{ b.id }}" *ngIf="b.seatsTotal - guests >= 0">{{
+        b.seatsTotal
+      }}</label>
+    </div>
+  </div>
+
+  <div
+    *ngIf="showAlert"
+    class="alert alert-warning alert-dismissible fade show border-warning"
+    role="alert"
+  >
+    Inserisci tutti i dati!
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  <button (click)="prenota()" class="btn btn-outline-dark mt-1">Prenota</button>
+</div>

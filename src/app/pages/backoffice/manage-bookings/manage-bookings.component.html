@@ -1,0 +1,36 @@
+<div class="manage-stations container">
+  <div *ngFor="let d of dates" class="mb-3 border-bottom border-black">
+    <div class="d-flex flex-column">
+      <h4 class="me-3">{{ d }}</h4>
+      <div class="mb-3 d-md-flex flex-column row">
+        <div *ngFor="let b of bookings">
+          <div *ngIf="b.date == d" class="rounded align-items-center">
+            <div class="mb-0 mx-2 d-flex flex-column p-3">
+              <span class="mb-3 text-center">{{ b.user.firstName }} - Ospiti:{{b.guests}} - {{ b.station.stationType }} {{ b.station.id }} - {{b.game}} - <span *ngIf="b.open">Aperta</span><span *ngIf="!b.open">Chiusa</span></span>
+              <span class="text-center">
+                <button class="btn btn-outline-dark mx-3" *ngIf="!b.confirmed" (click)="confirm(b.id!)">
+                  Conferma
+                </button>
+                <button class="btn btn-outline-dark mx-1" (click)="delete(b.id!)">
+                  Annulla
+                </button>
+                <button class="btn btn-outline-dark mx-1" (click)="toggleNoteInput(b.id!)">
+                  Aggiungi Nota
+                </button>
+              </span>
+              <div *ngIf="b.note" class="mt-3 text-center">
+                <p>Note: {{b.note}}</p>
+              </div>
+              <div *ngIf="showNoteInput[b.id!]" class="text-center mt-3">
+                <input type="text" [(ngModel)]="b.note" [placeholder]="b.note" class="rounded border border-dark"/>
+                <button class="btn btn-outline-dark mx-1" (click)="saveNote(b.id!, b.note!)">
+                  Salva
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

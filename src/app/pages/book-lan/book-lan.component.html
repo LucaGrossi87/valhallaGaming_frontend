@@ -1,0 +1,48 @@
+<div
+  class="container bg-filter fw-semibold text-center my-5 rounded p-5 border border-warning"
+>
+  <p class="fs-4">Ci sono ancora {{ lans.length }} LAN libere</p>
+  <p>Inserisci i tuoi dati per prenotare</p>
+
+  <div>
+    <label for="firstName" class="mx-3">Nome:</label>
+    <input
+      id="firstName"
+      [(ngModel)]="firstName"
+      placeholder="Inserisci il tuo nome"
+      required
+    />
+  </div>
+  <div>
+    <label for="lastName" class="mx-3 my-3">Cognome:</label>
+    <input
+      id="lastName"
+      [(ngModel)]="lastName"
+      placeholder="Inserisci il tuo cognome"
+      required
+    />
+  </div>
+  <div>
+    <label for="email" class="mx-3">Email:</label>
+    <input
+      id="email"
+      [(ngModel)]="email"
+      placeholder="Inserisci email"
+      required
+    />
+  </div>
+  <div
+    *ngIf="showAlert"
+    class="alert alert-warning alert-dismissible fade show border-warning mt-3"
+    role="alert"
+  >
+    Inserisci tutti i dati!
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <button (click)="prenota()" class="btn btn-outline-dark mt-3">Prenota</button>
+</div>

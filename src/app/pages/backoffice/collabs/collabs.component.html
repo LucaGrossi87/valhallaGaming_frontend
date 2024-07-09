@@ -1,0 +1,164 @@
+<div class="manage-stations container">
+  <div class="mb-3 border-bottom border-black">
+    <div class="d-flex justify-content-center" *ngIf="!isCollaborator">
+      <h4 class="me-3">Nuovo Collaboratore</h4>
+      <div (click)="toggleSelect()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          class="bi bi-plus-circle-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <div *ngIf="select && !isCollaborator" class="text-center mt-3">
+      <form (ngSubmit)="submitCollaborator()">
+        <div class="mb-3">
+          <label for="firstName" class="form-label">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            name="firstName"
+            [(ngModel)]="collaborator.firstName"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Cognome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            name="lastName"
+            [(ngModel)]="collaborator.lastName"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="userName" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="userName"
+            name="userName"
+            [(ngModel)]="collaborator.userName"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            [(ngModel)]="collaborator.email"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            [(ngModel)]="collaborator.password"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-dark">Salva</button>
+      </form>
+    </div>
+
+    <div class="mt-4">
+      <h5>Lista Collaboratori</h5>
+      <div class="list-group">
+        <div *ngFor="let collaborator of collaborators" class="mb-3">
+          {{ collaborator.firstName }} {{ collaborator.lastName }}
+          <div
+            class="btn-group ms-3"
+            role="group"
+            aria-label="Opzioni collaboratore"
+          >
+            <button
+              *ngIf="!isCollaborator"
+              type="button"
+              class="btn btn-dark rounded"
+              (click)="edit(collaborator)"
+            >
+              Modifica
+            </button>
+            <button
+              *ngIf="!isCollaborator"
+              type="button"
+              class="btn btn-dark ms-3 rounded"
+              (click)="delete(collaborator.id)"
+            >
+              Elimina
+            </button>
+          </div>
+          <div
+            *ngIf="selectEdit && collaborator.id === this.collaborator.id"
+            class="mt-3"
+          >
+            <form (ngSubmit)="updateCollaborator()" class="d-flex flex-column">
+              <label>Nome:</label>
+              <input
+                type="text"
+                [(ngModel)]="collaborator.firstName"
+                name="firstName"
+                required
+              />
+
+              <label>Cognome:</label>
+              <input
+                type="text"
+                [(ngModel)]="collaborator.lastName"
+                name="lastName"
+                required
+              />
+
+              <label>Username:</label>
+              <input
+                type="text"
+                [(ngModel)]="collaborator.userName"
+                name="userName"
+                required
+              />
+
+              <label>Email:</label>
+              <input
+                type="email"
+                [(ngModel)]="collaborator.email"
+                name="email"
+                required
+              />
+
+              <label>Password:</label>
+              <input
+                type="password"
+                [(ngModel)]="collaborator.password"
+                name="password"
+                required
+              />
+
+              <button type="submit" class="btn btn-dark ms-3 rounded mt-3">
+                Aggiorna collaboratore
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

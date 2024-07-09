@@ -1,0 +1,82 @@
+<div
+  class="container bg-filter fw-semibold text-center my-5 rounded p-3 border border-warning"
+>
+  <ng-container *ngIf="hasAvailableBookings">
+    <p>
+      Sono disponibili {{ boards.length }} prenotazioni aperte il {{ date }}
+    </p>
+    <div *ngFor="let b of boards">
+      <p *ngIf="b.game != 'ADD' && b.seatsAvailable > 0">
+        {{ b.user.firstName }} ti aspetta al tavolo {{ b.station.id }} con altri
+        {{ b.guests - 1 }} amici
+        <span *ngIf="b.game">per giocare a {{ b.game }}</span
+        >,
+        <span *ngIf="b.seatsAvailable > 1"
+          >ci sono ancora {{ b.seatsAvailable }} posti liberi!</span
+        ><span *ngIf="b.seatsAvailable == 1"
+          >c'è ancora {{ b.seatsAvailable }} posto libero!</span
+        >
+        <button class="btn btn-outline-dark ms-1" (click)="showForm(b)">
+          Prenota
+        </button>
+      </p>
+    </div>
+  </ng-container>
+
+  <p *ngIf="!hasAvailableBookings" class="mt-2">
+    Purtroppo non ci sono prenotazioni aperte per il {{ date }}
+  </p>
+
+  <div *ngIf="showBookingForm" class="booking-form border-top border-black">
+    <h3 class="my-3">Prenota il tavolo {{ chosenBooking?.station?.id }}</h3>
+    <form (ngSubmit)="prenota()">
+      <div>
+        <label for="firstName" class="me-3">Nome:</label>
+        <input
+          id="firstName"
+          [(ngModel)]="firstName"
+          name="firstName"
+          required
+          class="rounded"
+        />
+      </div>
+      <div>
+        <label for="lastName" class="my-3 me-3">Cognome:</label>
+        <input
+          id="lastName"
+          [(ngModel)]="lastName"
+          name="lastName"
+          required
+          class="rounded"
+        />
+      </div>
+      <div>
+        <label for="email" class="me-3">Email:</label>
+        <input
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          required
+          type="email"
+          class="rounded"
+        />
+      </div>
+      <div
+        *ngIf="showAlert"
+        class="alert alert-warning alert-dismissible fade show border-warning mt-3"
+        role="alert"
+      >
+        Inserisci tutti i dati!
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      <button type="submit" class="btn btn-outline-dark my-3 fw-semibold">
+        Conferma Prenotazione
+      </button>
+    </form>
+  </div>
+</div>

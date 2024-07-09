@@ -1,0 +1,32 @@
+<div class="login-page">
+  <div class="form rounded border border-warning">
+    <form class="login-form" (ngSubmit)="signIn()">
+      <input
+        type="text"
+        placeholder="username"
+        [(ngModel)]="login.username"
+        name="username"
+        required
+        class="rounded border rounded border-warning"
+      />
+      <input
+        type="password"
+        placeholder="password"
+        [(ngModel)]="login.password"
+        name="password"
+        required
+        required
+        class="rounded border rounded border-warning"
+      />
+      <div *ngIf="showAlert" class="alert alert-warning alert-dismissible fade show border-warning mt-3" role="alert">
+        Username o password errati!
+      </div>
+      <button
+        type="submit"
+        class="rounded btn btn-warning fw-semibold spacing-custom-1-5"
+      >
+        login
+      </button>
+    </form>
+  </div>
+</div>

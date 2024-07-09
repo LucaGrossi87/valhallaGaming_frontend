@@ -1,0 +1,90 @@
+<div class="manage-stations container">
+  <div class="mb-3 border-bottom border-black">
+    <div class="d-flex justify-content-center">
+      <h4 class="me-3">Tavoli</h4>
+      <div (click)="toggleSelect()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          class="bi bi-plus-circle-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div></div>
+    <div *ngIf="select" class="text-center">
+      <p>Numero di posti:</p>
+      <select id="guests" [(ngModel)]="postSeatsTotal">
+        <option *ngFor="let number of seatsSelection" [value]="number">
+          {{ number }}
+        </option>
+      </select>
+      <button (click)="postStation('BOARD')">conferma</button>
+    </div>
+    <div class="row mb-3">
+      <div
+        *ngFor="let b of boards"
+        class="col-12 col-md-4 pt-3 border border-black d-flex justify-content-center rounded flex-column"
+      >
+        <p>
+          Tavolo {{ b.id }} - Posti: {{ b.seatsTotal }}
+          <button (click)="edit(b)" class="btn btn-outline-dark mx-3">
+            Modifica
+          </button>
+          <button (click)="delete(b.id!)" class="btn btn-outline-dark">
+            Elimina
+          </button>
+        </p>
+        <div *ngIf="isEditing(b)" class="text-center mb-3">
+          <p class="text-center">Modifica posti</p>
+          <input
+            [(ngModel)]="editSeatsTotal"
+            placeholder="Numero di posti"
+            class="border border-black rounded"
+          />
+          <button (click)="submitEdit()" class="btn btn-outline-dark ms-3">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="d-flex justify-content-center">
+      <h4 class="me-3 align-items-center">Postazioni Lan</h4>
+      <div (click)="postStation('LAN')">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          class="bi bi-plus-circle-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div
+        *ngFor="let l of lans"
+        class="col-12 col-md-4 pt-3 border border-black d-flex justify-content-center rounded"
+      >
+        <p>
+          Postazione {{ l.id }}
+          <button (click)="delete(l.id!)" class="btn btn-outline-dark mx-3">
+            Elimina
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<header>
+  <nav
+    class="navbar navbar-expand-lg bg-warning border-bottom border-black"
+    aria-label="Eighth navbar example"
+  >
+    <div class="container justify-content-end">
+      <button
+        class="navbar-toggler text-dark"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarsExample07"
+        aria-controls="navbarsExample07"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div
+        class="collapse navbar-collapse justify-content-between"
+        id="navbarsExample07"
+      >
+        <div>
+          <a
+            class="btn btn-outline-dark ms-1 fw-semibold d-block d-md-inline"
+            aria-current="page"
+            routerLink="/"
+          >
+            Home
+          </a>
+          <a
+            class="btn btn-outline-dark ms-1 fw-semibold d-block d-md-inline"
+            routerLink="/contacts"
+          >
+            Contatti
+          </a>
+        </div>
+
+        <div class="d-flex">
+          <h3 class="fs-5 d-none d-md-inline text-decoration-underline mb-0">
+            Valhalla
+            <a href="https://ibb.co/zS9tL5b"
+              ><img
+                src="https://i.ibb.co/wKG2bLC/logo.png"
+                alt="logo"
+                width="24"
+                class="mx-1"
+            /></a>
+            Gaming
+          </h3>
+        </div>
+
+        <div>
+          <a
+            *ngIf="!isLoggedIn()"
+            routerLink="/admin-login"
+            class="btn btn-outline-dark ms-1 fw-semibold d-block d-md-inline"
+            >Admin Login</a
+          >
+          <a
+            *ngIf="isLoggedIn()"
+            routerLink="/backoffice/bookings"
+            class="btn btn-outline-dark ms-1 fw-semibold d-block d-md-inline"
+            >Backoffice</a
+          >
+          <a
+            *ngIf="isLoggedIn()"
+            (click)="logout()"
+            class="btn btn-outline-dark ms-1 fw-semibold d-block d-md-inline"
+            >Logout</a
+          >
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

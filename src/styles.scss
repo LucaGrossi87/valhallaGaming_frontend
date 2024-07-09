@@ -1,0 +1,204 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.home {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.date-selection {
+  margin-bottom: 20px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: block;
+  margin: 10px 0;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+@import "bootstrap/scss/bootstrap";
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+header,
+footer,
+.btn,
+.w3-bar,
+h1,
+button,
+span,
+label,
+option {
+  font-family: "Bona Nova SC", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+#date {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+  width: 190px;
+}
+
+.bg-custom {
+  background-image: url(./assets/photo-1650024520884-9cd80902ed53.avif);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg-filter {
+  background-color: rgba(256, 256, 256, 0.7);
+}
+
+.spacing-custom-3 {
+  letter-spacing: 0.3rem;
+}
+.spacing-custom-2 {
+  letter-spacing: 0.2rem;
+}
+.spacing-custom-1-5 {
+  letter-spacing: 0.15rem;
+}
+
+.name-bg {
+  background-image: url(./assets/pexels-photo-5023698.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.bg-filter-dark {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.max-width {
+  max-width: 100%;
+}
+
+$size-width: 400px;
+$size-height: 250px;
+
+.carousel-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-container {
+  width: $size-width;
+  height: $size-height;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.carousel {
+  display: flex;
+  width: 100%;
+  animation: sliding 12s infinite;
+  div {
+    width: $size-width;
+    height: $size-height;
+    background-size: cover;
+    background-position: center;
+  }
+  &:hover {
+    animation-play-state: paused;
+  }
+  .image-one {
+    background-image: url("https://images.unsplash.com/photo-1480936600919-bffa6b7ecf1e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+  }
+  .image-two {
+    background-image: url("https://images.unsplash.com/photo-1475053081036-c8eb31d187b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+  }
+  .image-three {
+    background-image: url("https://images.unsplash.com/photo-1525278070609-779c7adb7b71?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+  }
+}
+
+@keyframes sliding {
+  30% {
+    transform: translateX(0);
+  }
+  35% {
+    transform: translateX(-$size-width);
+  }
+  65% {
+    transform: translateX(-$size-width);
+  }
+  70% {
+    transform: translateX(-$size-width * 2);
+  }
+  98% {
+    transform: translateX(-$size-width * 2);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  $size-width: 240px;
+  $size-height: 150px;
+  .carousel-wrapper {
+    width: $size-width * 1.3;
+    height: $size-height * 1.4;
+  }
+
+  .carousel-container {
+    width: $size-width;
+    height: $size-height;
+  }
+
+  .carousel {
+    width: $size-width * 3;
+    > div {
+      width: $size-width;
+      height: $size-height;
+    }
+  }
+
+  @keyframes sliding {
+    30% {
+      transform: translateX(0);
+    }
+    35% {
+      transform: translateX(-$size-width);
+    }
+    65% {
+      transform: translateX(-$size-width);
+    }
+    70% {
+      transform: translateX(-$size-width * 2);
+    }
+    98% {
+      transform: translateX(-$size-width * 2);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .vh-100 {
+    height: 100vh;
+  }
+}
