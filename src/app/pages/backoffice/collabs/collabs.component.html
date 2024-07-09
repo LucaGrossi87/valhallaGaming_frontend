@@ -85,72 +85,30 @@
       <div class="list-group">
         <div *ngFor="let collaborator of collaborators" class="mb-3">
           {{ collaborator.firstName }} {{ collaborator.lastName }} - <a href="mailto:'{{collaborator.email}}'">{{collaborator.email}}</a>
-          <div
-            class="btn-group ms-3"
-            role="group"
-            aria-label="Opzioni collaboratore"
-          >
-            <button
-              *ngIf="!isCollaborator"
-              type="button"
-              class="btn btn-dark rounded"
-              (click)="edit(collaborator)"
-            >
+          <div class="btn-group ms-3" role="group" aria-label="Opzioni collaboratore">
+            <button *ngIf="!isCollaborator" type="button" class="btn btn-dark rounded" (click)="edit(collaborator)">
               Modifica
             </button>
-            <button
-              *ngIf="!isCollaborator"
-              type="button"
-              class="btn btn-dark ms-3 rounded"
-              (click)="delete(collaborator.id)"
-            >
+            <button *ngIf="!isCollaborator" type="button" class="btn btn-dark ms-3 rounded" (click)="delete(collaborator.id)">
               Elimina
             </button>
           </div>
-          <div
-            *ngIf="selectEdit && collaborator.id === this.collaborator.id"
-            class="mt-3"
-          >
-            <form (ngSubmit)="updateCollaborator()" class="d-flex flex-column">
+          <div *ngIf="isEditing(collaborator)">
+            <form (ngSubmit)="updateCollaborator()" class="d-flex flex-column mt-3">
               <label>Nome:</label>
-              <input
-                type="text"
-                [(ngModel)]="collaborator.firstName"
-                name="firstName"
-                required
-              />
+              <input type="text" [(ngModel)]="selectedCollaborator.firstName" name="firstName" required />
 
               <label>Cognome:</label>
-              <input
-                type="text"
-                [(ngModel)]="collaborator.lastName"
-                name="lastName"
-                required
-              />
+              <input type="text" [(ngModel)]="selectedCollaborator.lastName" name="lastName" required />
 
               <label>Username:</label>
-              <input
-                type="text"
-                [(ngModel)]="collaborator.userName"
-                name="userName"
-                required
-              />
+              <input type="text" [(ngModel)]="selectedCollaborator.userName" name="userName" required />
 
               <label>Email:</label>
-              <input
-                type="email"
-                [(ngModel)]="collaborator.email"
-                name="email"
-                required
-              />
+              <input type="email" [(ngModel)]="selectedCollaborator.email" name="email" required />
 
               <label>Password:</label>
-              <input
-                type="password"
-                [(ngModel)]="collaborator.password"
-                name="password"
-                required
-              />
+              <input type="password" [(ngModel)]="selectedCollaborator.password" name="password" required />
 
               <button type="submit" class="btn btn-dark ms-3 rounded mt-3">
                 Aggiorna collaboratore

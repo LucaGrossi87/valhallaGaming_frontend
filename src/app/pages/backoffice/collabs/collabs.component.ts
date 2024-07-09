@@ -10,6 +10,9 @@ import { Admin } from '../../../models/i-admins'; // Assicurati di importare cor
   styleUrls: ['./collabs.component.scss'],
 })
 export class CollabsComponent implements OnInit {
+  selectedCollaborator: any = {};
+editId: number | null = null;
+
   select: boolean = false;
   selectEdit: boolean = false;
   collaborator: any = {};
@@ -71,9 +74,14 @@ export class CollabsComponent implements OnInit {
     );
   }
 
+  isEditing(collaborator: any): boolean {
+    return this.editId === collaborator.id;
+  }
+
+
   edit(collaborator: any): void {
     if (!this.isCollaborator) {
-      this.collaborator = {
+      this.selectedCollaborator = {
         id: collaborator.id,
         firstName: collaborator.firstName,
         lastName: collaborator.lastName,
@@ -82,7 +90,7 @@ export class CollabsComponent implements OnInit {
         password: collaborator.password,
       };
 
-      this.selectEdit = true;
+      this.editId = collaborator.id;
     }
   }
 

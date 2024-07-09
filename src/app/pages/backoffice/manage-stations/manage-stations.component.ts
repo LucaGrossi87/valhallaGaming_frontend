@@ -20,7 +20,7 @@ export class ManageStationsComponent implements OnInit {
 
   constructor(
     private stationSvc: ManageStationsService,
-    private bookingsSvc: ManageBookingsService // Inietta il servizio di gestione prenotazioni
+    private bookingsSvc: ManageBookingsService
   ) {}
 
   ngOnInit(): void {
@@ -81,20 +81,17 @@ export class ManageStationsComponent implements OnInit {
         seatsTotal: this.editSeatsTotal,
         stationType: this.editStationType,
       };
+
       this.stationSvc
         .update(this.editId, updatedStation)
         .subscribe((updatedData) => {
-          const boardIndex = this.boards.findIndex(
-            (board) => board.id === this.editId
-          );
+          const boardIndex = this.boards.findIndex((board) => board.id === this.editId);
           if (boardIndex !== -1) {
-            this.boards[boardIndex] = updatedData;
+            this.boards[boardIndex].seatsTotal = updatedData.seatsTotal;
           } else {
-            const lanIndex = this.lans.findIndex(
-              (lan) => lan.id === this.editId
-            );
+            const lanIndex = this.lans.findIndex((lan) => lan.id === this.editId);
             if (lanIndex !== -1) {
-              this.lans[lanIndex] = updatedData;
+              this.lans[lanIndex].seatsTotal = updatedData.seatsTotal;
             }
           }
           this.editId = null;
