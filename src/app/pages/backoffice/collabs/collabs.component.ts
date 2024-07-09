@@ -1,3 +1,4 @@
+import { User } from './../../../models/i-users';
 import { Component, OnInit } from '@angular/core';
 import { CollabsService } from './collabs.service';
 import { AuthService } from '../../../auth/auth.service';
@@ -24,7 +25,9 @@ export class CollabsComponent implements OnInit {
     this.loadCollaborators();
     this.authSvc.user$.subscribe((user) => {
       this.isCollaborator = (user as Admin)?.role === 'COLLABORATOR';
+      console.log(user);
     });
+
   }
 
   toggleSelect(): void {
@@ -41,6 +44,9 @@ export class CollabsComponent implements OnInit {
 
   submitCollaborator(): void {
     if (!this.isCollaborator) {
+      console.log("check");
+      console.log(this.collaborator);
+
       this.collabSvc.createCollaborator(this.collaborator).subscribe(
         (data) => {
           console.log('Collaboratore creato con successo:', data);
