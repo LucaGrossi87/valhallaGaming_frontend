@@ -1,6 +1,9 @@
 <div
   class="container bg-filter fw-semibold text-center my-5 rounded p-3 border border-warning"
 >
+
+<div *ngIf="!boards.length"><p>Purtroppo non ci sono tavoli disponibili per il {{date}}</p></div>
+<div *ngIf="boards.length">
   <p class="fs-4">Ci sono ancora {{ boards.length }} tavoli disponibili</p>
 
   <div>
@@ -84,4 +87,5 @@
   </div>
 
   <button (click)="prenota()" class="btn btn-outline-dark mt-1">Prenota</button>
+</div>
 </div>
