@@ -5,10 +5,9 @@ import { ManageBookingsService } from './manage-bookings.service';
 @Component({
   selector: 'app-manage-bookings',
   templateUrl: './manage-bookings.component.html',
-  styleUrls: ['./manage-bookings.component.scss']
+  styleUrls: ['./manage-bookings.component.scss'],
 })
 export class ManageBookingsComponent implements OnInit {
-
   bookings: Booking[] = [];
   dates: string[] = [];
   showNoteInput: { [key: number]: boolean } = {};
@@ -16,7 +15,7 @@ export class ManageBookingsComponent implements OnInit {
   constructor(private bookingSvc: ManageBookingsService) {}
 
   ngOnInit(): void {
-    this.bookingSvc.getBookings().subscribe(data => {
+    this.bookingSvc.getBookings().subscribe((data) => {
       this.bookings = data;
       const dateSet = new Set<string>();
 
@@ -30,23 +29,27 @@ export class ManageBookingsComponent implements OnInit {
   }
 
   delete(id: number): void {
-    this.bookingSvc.delete(id).subscribe(response => {
-      this.bookings = this.bookings.filter(booking => booking.id !== id);
+    this.bookingSvc.delete(id).subscribe((response) => {
+      this.bookings = this.bookings.filter((booking) => booking.id !== id);
     });
     this.bookingSvc.deleteEmail(id).subscribe(() => {
-      const booking = this.bookings.find(b => b.id === id);})
+      const booking = this.bookings.find((b) => b.id === id);
+    });
   }
 
   confirm(id: number): void {
-    this.bookingSvc.confirm(id).subscribe(() => {
-      const booking = this.bookings.find(b => b.id === id);
+    this.bookingSvc.confirm(id).subscribe(
+      () => {
+        const booking = this.bookings.find((b) => b.id === id);
 
-      if (booking) {
-        booking.confirmed = true;
+        if (booking) {
+          booking.confirmed = true;
+        }
+      },
+      (error) => {
+        console.error('Confirmation error:', error);
       }
-    }, error => {
-      console.error('Confirmation error:', error);
-    });
+    );
   }
 
   toggleNoteInput(id: number): void {
@@ -54,14 +57,17 @@ export class ManageBookingsComponent implements OnInit {
   }
 
   saveNote(id: number, note: string): void {
-    this.bookingSvc.updateNote(id, note).subscribe(() => {
-      const booking = this.bookings.find(b => b.id === id);
-      if (booking) {
-        booking.note = note;
-        this.showNoteInput[id] = false;
+    this.bookingSvc.updateNote(id, note).subscribe(
+      () => {
+        const booking = this.bookings.find((b) => b.id === id);
+        if (booking) {
+          booking.note = note;
+          this.showNoteInput[id] = false;
+        }
+      },
+      (error) => {
+        console.error('Update note error:', error);
       }
-    }, error => {
-      console.error('Update note error:', error);
-    });
+    );
   }
 }

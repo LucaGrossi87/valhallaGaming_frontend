@@ -10,8 +10,8 @@ import { Login } from '../../models/i-login';
 })
 export class AdminLoginComponent {
   login: Login = {
-    username: 'admin6',
-    password: 'password',
+    username: '',
+    password: '',
   };
   showAlert:boolean=false
 
