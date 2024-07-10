@@ -35,10 +35,8 @@ export class ManageStationsComponent implements OnInit {
   delete(id: number): void {
     let deletedBookingIds: number[] = [];
 
-
     this.bookingsSvc.getBookingsByStationId(id).subscribe((bookings) => {
       deletedBookingIds = bookings.map((booking) => booking.id!);
-
       deletedBookingIds.forEach((bookingId) => {
         this.bookingsSvc.deleteEmail(bookingId).subscribe(
           () => {
@@ -53,11 +51,11 @@ export class ManageStationsComponent implements OnInit {
             );
           }
         );
-        this.stationSvc.delete(id).subscribe(() => {
-          this.boards = this.boards.filter((board) => board.id !== id);
-          this.lans = this.lans.filter((lan) => lan.id !== id);
 
-        });
+      });
+      this.stationSvc.delete(id).subscribe(() => {
+        this.boards = this.boards.filter((board) => board.id !== id);
+        this.lans = this.lans.filter((lan) => lan.id !== id);
       });
     });
   }
