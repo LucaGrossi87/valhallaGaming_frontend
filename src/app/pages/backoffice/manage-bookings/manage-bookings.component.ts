@@ -32,9 +32,6 @@ export class ManageBookingsComponent implements OnInit {
     this.bookingSvc.delete(id).subscribe((response) => {
       this.bookings = this.bookings.filter((booking) => booking.id !== id);
     });
-    // this.bookingSvc.deleteEmail(id).subscribe(() => {
-    //   const booking = this.bookings.find((b) => b.id === id);
-    // });
   }
 
   confirm(id: number): void {

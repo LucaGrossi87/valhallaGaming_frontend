@@ -21,8 +21,7 @@ export class BookOpenBoardComponent implements OnInit {
   hasAvailableBookings: boolean = false;
   firstName: string = '';
   lastName: string = '';
-  username: string = '';
-  email: string = 'email';
+  email: string = '';
   chosenBooking: Booking | undefined;
   showBookingForm: boolean = false;
   showAlert: boolean = false;
