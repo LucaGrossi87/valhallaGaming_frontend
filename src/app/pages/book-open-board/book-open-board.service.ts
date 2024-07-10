@@ -24,8 +24,6 @@ export class BookOpenBoardService {
   }
 
   editBooking(id: number, booking: Booking): Observable<Booking> {
-    console.log(this.editBookingUrl);
-
     return this.http.put<Booking>(`${this.editBookingUrl}/${id}`, booking);
   }
 }

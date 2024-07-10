@@ -35,27 +35,28 @@ export class ManageStationsComponent implements OnInit {
   delete(id: number): void {
     let deletedBookingIds: number[] = [];
 
-    this.stationSvc.delete(id).subscribe(() => {
-      this.boards = this.boards.filter((board) => board.id !== id);
-      this.lans = this.lans.filter((lan) => lan.id !== id);
 
-      this.bookingsSvc.getBookingsByStationId(id).subscribe((bookings) => {
-        deletedBookingIds = bookings.map((booking) => booking.id!);
+    this.bookingsSvc.getBookingsByStationId(id).subscribe((bookings) => {
+      deletedBookingIds = bookings.map((booking) => booking.id!);
 
-        deletedBookingIds.forEach((bookingId) => {
-          this.bookingsSvc.deleteEmail(bookingId).subscribe(
-            () => {
-              console.log(
-                `Email di cancellazione inviata per la prenotazione ${bookingId}`
-              );
-            },
-            (error) => {
-              console.error(
-                `Errore durante l'invio dell'email di cancellazione per la prenotazione ${bookingId}:`,
-                error
-              );
-            }
-          );
+      deletedBookingIds.forEach((bookingId) => {
+        this.bookingsSvc.deleteEmail(bookingId).subscribe(
+          () => {
+            console.log(
+              `Email di cancellazione inviata per la prenotazione ${bookingId}`
+            );
+          },
+          (error) => {
+            console.error(
+              `Errore durante l'invio dell'email di cancellazione per la prenotazione ${bookingId}:`,
+              error
+            );
+          }
+        );
+        this.stationSvc.delete(id).subscribe(() => {
+          this.boards = this.boards.filter((board) => board.id !== id);
+          this.lans = this.lans.filter((lan) => lan.id !== id);
+
         });
       });
     });

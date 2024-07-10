@@ -14,10 +14,10 @@ import { Router } from '@angular/router';
 export class BookLanComponent implements OnInit {
   lans: Station[] = [];
   date: string = '';
-  firstName: string = '';
-  lastName: string = '';
+  firstName: string = 'nome';
+  lastName: string = 'cognome';
   username: string = '';
-  email: string = 'email';
+  email: string = 'lucagrossi87@gmail.com';
   showAlert: boolean = false;
   showAlertEmail: boolean = false;
 

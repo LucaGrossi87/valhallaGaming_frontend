@@ -28,8 +28,6 @@ export class ManageStationsService {
   }
 
   update(id: number, data: Partial<Station>): Observable<Station> {
-    console.log(id);
-
     return this.http.put<Station>(`${this.updateBoardUrl}/${id}`, data);
   }
 
