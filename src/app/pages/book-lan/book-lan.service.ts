@@ -9,7 +9,7 @@ import { Station } from '../../models/i-stations';
 })
 export class BookLanService {
   private newLansUrl = environment.newLansUrl;
-  private lanBookingUrl = environment.lanBookingUrl; // Assicurati che questo sia definito nel tuo environment.ts
+  private lanBookingUrl = environment.lanBookingUrl;
 
   constructor(private http: HttpClient) {}
 
