@@ -66,8 +66,8 @@ export class AuthService {
     if (!userJson) return '';
     const accessData: AccessData = JSON.parse(userJson);
     if (this.jwtHelper.isTokenExpired(accessData.accessToken)) {
-      this.logout().subscribe();
-      return '';}
+      return '';
+    }
     return accessData.accessToken;
   }
 
@@ -78,7 +78,10 @@ export class AuthService {
       const expiresInMs = expirationDate.getTime() - new Date().getTime();
 
       setTimeout(() => {
-        this.logout().subscribe();
+        const currentAccessToken = this.getAccessToken();
+        if (currentAccessToken) {
+          this.logout().subscribe();
+        }
       }, expiresInMs);
     }
   }
