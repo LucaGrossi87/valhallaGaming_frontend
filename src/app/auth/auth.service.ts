@@ -48,6 +48,8 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
+    console.log("logout");
+
     return this.http.post<any>(this.logoutUrl, {}).pipe(
       tap(() => {
         this.authSubj.next(null);
@@ -62,26 +64,29 @@ export class AuthService {
   }
 
   getAccessToken(): string {
+    console.log("accesstoken");
+
     const userJson = localStorage.getItem('accessData');
     if (!userJson) return '';
     const accessData: AccessData = JSON.parse(userJson);
     if (this.jwtHelper.isTokenExpired(accessData.accessToken)) {
+      this.logout().subscribe();
       return '';
     }
     return accessData.accessToken;
   }
 
   autoLogout(jwt: string): void {
+    console.log("auto");
+
     const expirationDate = this.jwtHelper.getTokenExpirationDate(jwt);
 
     if (expirationDate) {
-      const expiresInMs = expirationDate.getTime() - new Date().getTime();
+      // const expiresInMs = expirationDate.getTime() - new Date().getTime();
+      const expiresInMs = 60000;
 
       setTimeout(() => {
-        const currentAccessToken = this.getAccessToken();
-        if (currentAccessToken) {
-          this.logout().subscribe();
-        }
+        this.logout().subscribe();
       }, expiresInMs);
     }
   }
