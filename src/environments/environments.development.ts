@@ -1,4 +1,4 @@
-export const environment = {
+export const environmentDev = {
   lansUrl:'http://localhost:8080/api/lans',
   newLansUrl:'http://localhost:8080/api/lans/available',
   boardsUrl:'http://localhost:8080/api/boards',
